@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="main">
+
+    <div class="card">
+
+        <h1>💳 Online Payment Fraud Detection</h1>
+
+        <p class="subtitle">
+            Machine Learning based fraud prediction system
+        </p>
+
+        <form action="/predict" method="post">
+
+            <input type="text" name="type" placeholder="Transaction Type" required>
+
+            <input type="text" name="amount" placeholder="Amount" required>
+
+            <input type="text" name="oldbalanceOrg" placeholder="Old Balance Origin" required>
+
+            <input type="text" name="newbalanceOrig" placeholder="New Balance Origin" required>
+
+            <input type="text" name="oldbalanceDest" placeholder="Old Balance Destination" required>
+
+            <input type="text" name="newbalanceDest" placeholder="New Balance Destination" required>
+
+            <button type="submit">
+                Predict Transaction
+            </button>
+
+        </form>
+
+        {% if prediction_text %}
+
+        <div class="result 
+{% if 'Woohoo' in prediction_text %}
+safe
+{% else %}
+fraud
+{% endif %}
+">
+
+{{ prediction_text }}
+
+</div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
